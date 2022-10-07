@@ -1,9 +1,9 @@
-package com.examples.photogalleryapp.Adapter
+package com.examples.photogalleryapp.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.examples.photogalleryapp.ui.Home.ImageListingFragment
+import com.examples.photogalleryapp.ui.Home.Fragments.ImageListingFragment
 
 class TabAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
     var size1:  Int = 0

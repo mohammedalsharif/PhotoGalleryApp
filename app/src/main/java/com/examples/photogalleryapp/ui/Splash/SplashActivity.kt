@@ -4,9 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.examples.photogalleryapp.databinding.ActivityMainBinding
 import com.examples.photogalleryapp.databinding.ActivitySpalshBinding
-import com.examples.photogalleryapp.ui.Home.MainActivity
+import com.examples.photogalleryapp.ui.Home.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
     lateinit var binding: ActivitySpalshBinding
@@ -16,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler().postDelayed(Runnable {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }, 3000)
 

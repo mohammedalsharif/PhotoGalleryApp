@@ -1,18 +1,19 @@
-package com.examples.photogalleryapp.ui.Home
+package com.examples.photogalleryapp.ui.Home.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.examples.photogalleryapp.Adapter.TabAdapter
+import com.examples.photogalleryapp.adapter.TabAdapter
 import com.examples.photogalleryapp.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
-    public val TABS_TITLE_LIST = listOf(
+    val TABS_TITLE_LIST = listOf(
         "Editor's Choice",
         "Backgrounds",
         "Fashion",
