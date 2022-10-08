@@ -2,6 +2,7 @@ package com.examples.photogalleryapp.data.api
 
 import retrofit2.Call
 import com.examples.photogalleryapp.data.model.ImageResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,12 +14,13 @@ interface ApiInterface {
      }
 
     @GET("api/")
-    fun getImages(
+    suspend fun getImages(
+        @Query("key") key:String,
         @Query("page") page: Int,
         @Query("q") query: String,
         @Query("q") category: String,
         @Query("editors_choice") editorChoice: Boolean
-    ): ImageResponse
+    ):Response<ImageResponse>
 
     @GET("api/")
     fun getImageById(@Query("id") id:Long):Call<ImageResponse>

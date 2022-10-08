@@ -9,22 +9,16 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-
-@Module
 @InstallIn(SingletonComponent::class)
+@Module
 object AppModule{
-
     @Provides
     @Singleton
-    fun provideRetrofit():Retrofit=
+    fun provideApiInterface():ApiInterface=
         Retrofit.Builder().baseUrl(ApiInterface.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .build()
+            .build().create(ApiInterface::class.java)
 
-    @Provides
-    @Singleton
-    fun provideApiInterface(retrofit: Retrofit): ApiInterface =
-        retrofit.create(ApiInterface::class.java)
 
 
 

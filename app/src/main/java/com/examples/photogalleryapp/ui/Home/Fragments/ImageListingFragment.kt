@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.examples.photogalleryapp.adapter.ImagesPageAdapter
 import com.examples.photogalleryapp.data.api.ApiClient
 import com.examples.photogalleryapp.databinding.FragmentImageListingBinding
@@ -15,25 +16,29 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ImageListingFragment : Fragment() {
-    private lateinit var  viewModel :HomeViewModel
-
     lateinit var binding: FragmentImageListingBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private val viewModel: HomeViewModel by viewModels()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentImageListingBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter =ImagesPageAdapter()
-        viewModel= HomeViewModel(HomRepository(ApiClient.getClient))
+        val adapter = ImagesPageAdapter()
+
         binding.apply {
             binding.recImagesList.setHasFixedSize(true)
-            binding.recImagesList.adapter=adapter
+            binding.recImagesList.adapter = adapter
+            binding.recImagesList.layoutManager = GridLayoutManager(requireContext(), 2)
 
         }
-        viewModel.images.observe(viewLifecycleOwner){
-            adapter.submitData(viewLifecycleOwner.lifecycle,it)
+        viewModel.images.observe(viewLifecycleOwner) {
+            adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
     }
 

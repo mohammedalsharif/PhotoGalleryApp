@@ -10,7 +10,15 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/_23sdp"
+        android:paddingEnd="@dimen/_23sdp"
+        android:elevation="@dimen/_2sdp"
+        app:tabIndicatorHeight="@dimen/_2sdp"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/ash_black"
+        app:tabTextAppearance="@style/TabTheme"
+        app:tabTextColor="#ADB1B9"
         />
 
     <androidx.viewpager2.widget.ViewPager2

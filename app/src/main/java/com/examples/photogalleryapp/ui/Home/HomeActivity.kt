@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
@@ -26,7 +27,6 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val apiClint = ApiClient.getClient
-    //    val call = apiClint.getImages(1, "", "", true)
 
 //        call.enqueue(object : Callback<ImageResponse> {
 //            override fun onResponse(
