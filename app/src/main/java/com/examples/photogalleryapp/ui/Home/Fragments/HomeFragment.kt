@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun createTabAdapter(): TabAdapter {
-        val tabAdapter: TabAdapter = TabAdapter(requireActivity())
+        val tabAdapter: TabAdapter = TabAdapter(requireActivity(),TABS_TITLE_LIST)
         tabAdapter.setSize(TABS_TITLE_LIST.size)
         return tabAdapter
     }

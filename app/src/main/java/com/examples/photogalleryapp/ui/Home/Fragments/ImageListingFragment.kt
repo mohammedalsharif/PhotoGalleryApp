@@ -24,12 +24,14 @@ class ImageListingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentImageListingBinding.inflate(inflater)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = ImagesPageAdapter()
+        arguments?.getString("category")?.let { viewModel.search(it) }
 
         binding.apply {
             binding.recImagesList.setHasFixedSize(true)
@@ -37,17 +39,21 @@ class ImageListingFragment : Fragment() {
             binding.recImagesList.layoutManager = GridLayoutManager(requireContext(), 2)
 
         }
-        viewModel.images.observe(viewLifecycleOwner) {
+
+        viewModel.images.observe(viewLifecycleOwner)
+        {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() =
-            ImageListingFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
+        fun newInstance(category:String): ImageListingFragment {
+            val args = Bundle()
+            args.putString(category,"category")
+            val fragment = ImageListingFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

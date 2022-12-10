@@ -18,8 +18,7 @@ object ApiClient {
         val url =originalHttpUrl.newBuilder()
             .addQueryParameter("key", API_KYE)
             .build()
-        val requestBuilder=original.newBuilder()
-            .url(url)
+        val requestBuilder=original.newBuilder().url(url)
         val request=requestBuilder.build()
         val response =chain.proceed(request)
         response
@@ -33,9 +32,9 @@ object ApiClient {
                 .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)
 
-            httpClint.addInterceptor(logging)
-                .addInterceptor(headerInterceptor)
+            httpClint.addInterceptor(logging).addInterceptor(headerInterceptor)
             val gson =GsonBuilder().setLenient().create()
+
             val retrofit=Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))

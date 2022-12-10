@@ -3,6 +3,7 @@ package com.examples.photogalleryapp.data.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.examples.photogalleryapp.data.api.ApiClient
 import com.examples.photogalleryapp.data.api.ApiInterface
 import com.examples.photogalleryapp.data.model.Image
 import com.examples.photogalleryapp.data.model.ImageResponse
@@ -29,10 +30,9 @@ class ImagesPagingSource(
         val position = params.key ?: PAGE_INDEX
 
       return  try {
-            val response = apiInterface.getImages("30396408-465b69fbdd388f93350dbde98",1, "", "", true)
+            val response = apiInterface.getImages(ApiClient.API_KYE,position, "", category, false)
             LoadResult.Page(data = response.body()?.hits!!, prevKey = if (position == PAGE_INDEX) null else position - 1,
                 nextKey = if (response.body()?.hits?.isEmpty()!!)null else position+1)
-
         }catch (exceeption:IOException){
             LoadResult.Error(exceeption)
         }catch (exceeption:HttpException){
