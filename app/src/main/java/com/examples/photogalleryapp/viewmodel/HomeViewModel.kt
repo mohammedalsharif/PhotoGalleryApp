@@ -1,5 +1,6 @@
 package com.examples.photogalleryapp.viewmodel
 
+import android.util.Log
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,6 +27,7 @@ class HomeViewModel @Inject constructor ( private val apiInterface: ApiInterface
     ).liveData.cachedIn(viewModelScope) }
 
     fun search(query:String){
-        mutableQuery.value=query
+        mutableQuery.postValue(query)
+        Log.e("TAG", "newInstance: ${mutableQuery.value}")
     }
 }
