@@ -9,11 +9,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
+import com.examples.photogalleryapp.R
 import com.examples.photogalleryapp.Util.Constans
 import com.examples.photogalleryapp.adapter.ImagesPageAdapter
 import com.examples.photogalleryapp.data.api.ApiClient
 import com.examples.photogalleryapp.databinding.FragmentImageListingBinding
+import com.examples.photogalleryapp.listener.OnClickListener
 import com.examples.photogalleryapp.repository.HomRepository
 import com.examples.photogalleryapp.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,22 +28,14 @@ class ImageListingFragment : Fragment() {
     private val TAG = "ImageListingFragment"
     lateinit var binding: FragmentImageListingBinding
     private val viewModel: HomeViewModel by viewModels()
-
-    override fun onStart() {
-        super.onStart()
-        arguments?.let {
-            val category = arguments?.getString(Constans.KEY_NAME)
-            Log.e(TAG, "onStart: $category")
-        }
-    }
-
+    private lateinit var adapter: ImagesPageAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentImageListingBinding.inflate(inflater)
-        val adapter = ImagesPageAdapter()
+        adapter = ImagesPageAdapter()
 
 
         arguments?.getString(Constans.KEY_NAME)?.let {
@@ -60,14 +57,20 @@ class ImageListingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adapter.clickListener = object : OnClickListener {
+            override fun onClickItem(id: Int) {
+                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_imageDetailsFragment)
+            }
+
+        }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(category: String)= ImageListingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(Constans.KEY_NAME,category)
-                }
+        fun newInstance(category: String) = ImageListingFragment().apply {
+            arguments = Bundle().apply {
+                putString(Constans.KEY_NAME, category)
+            }
         }
     }
 }

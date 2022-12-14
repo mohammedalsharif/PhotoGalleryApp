@@ -21,9 +21,12 @@ import com.examples.photogalleryapp.R
 import com.examples.photogalleryapp.Util.Common
 import com.examples.photogalleryapp.data.model.Image
 import com.examples.photogalleryapp.databinding.RecImageItemBinding
+import com.examples.photogalleryapp.listener.OnClickListener
 
 class ImagesPageAdapter :
     PagingDataAdapter<Image, ImagesPageAdapter.ImagesViewHolder>(IMAGES_COMPARATOR) {
+
+    lateinit var clickListener: OnClickListener
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
         val image = getItem(position)
 
@@ -31,32 +34,36 @@ class ImagesPageAdapter :
             .placeholder(Common.getRandomDrawableColor())
             .error(Common.getRandomDrawableColor())
             .diskCacheStrategy(DiskCacheStrategy.ALL)
+
+        holder.bindingInt.root.setOnClickListener {
+            clickListener.onClickItem(position)
+        }
         Glide.with(holder.itemView).load(image?.webformatURL)
             .apply(requestOptions)
             .addListener(object :
-            RequestListener<Drawable>{
-            override fun onLoadFailed(
-                e: GlideException?,
-                model: Any?,
-                target: Target<Drawable>?,
-                isFirstResource: Boolean
-            ): Boolean {
-                holder.bindingInt.progressLoadPhoto.visibility=View.GONE
-                return false
-            }
+                RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    holder.bindingInt.progressLoadPhoto.visibility = View.GONE
+                    return false
+                }
 
-            override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: Target<Drawable>?,
-                dataSource: DataSource?,
-                isFirstResource: Boolean
-            ): Boolean {
-                holder.bindingInt.progressLoadPhoto.visibility=View.GONE
-                return false
-            }
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    holder.bindingInt.progressLoadPhoto.visibility = View.GONE
+                    return false
+                }
 
-        })
+            })
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(holder.bindingInt.imageViewImage)
     }

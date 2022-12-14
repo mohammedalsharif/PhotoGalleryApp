@@ -26,24 +26,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val apiClint = ApiClient.getClient
 
-//        call.enqueue(object : Callback<ImageResponse> {
-//            override fun onResponse(
-//                call: Call<ImageResponse>,
-//                response: Response<ImageResponse>
-//            ) {
-//                if (response.code() == 200) {
-//                    Log.e(TAG, "onResponse: " + response.body())
-//                }
-//                Log.e(TAG, "onResponse: " + response.code())
-//            }
-//
-//            override fun onFailure(call: Call<ImageResponse>, t: Throwable) {
-//                Log.e(TAG, "onFailure: " + t.message)
-//            }
-//
-//        })
+
+
         navController = Navigation.findNavController(findViewById(R.id.fragment))
         navController.addOnDestinationChangedListener(listener = NavController.OnDestinationChangedListener(
             function = { controller: NavController, destination: NavDestination, arguments: Bundle? ->

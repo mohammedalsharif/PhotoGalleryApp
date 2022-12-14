@@ -1,10 +1,12 @@
 package com.examples.photogalleryapp.ui.Home.Fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.fragment.app.Fragment
+import com.examples.photogalleryapp.R
 import com.examples.photogalleryapp.adapter.TabAdapter
 import com.examples.photogalleryapp.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -40,11 +42,7 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater)
 
 
@@ -55,13 +53,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewPager.adapter = createTabAdapter()
+
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, poss ->
-            tab.text=TABS_TITLE_LIST[poss]
+            tab.text = TABS_TITLE_LIST[poss]
         }.attach()
+        activity?.findViewById<View>(R.id.headerLayout)?.visibility = View.VISIBLE
     }
 
     private fun createTabAdapter(): TabAdapter {
-        val tabAdapter: TabAdapter = TabAdapter(requireActivity(),TABS_TITLE_LIST)
+        val tabAdapter: TabAdapter = TabAdapter(requireActivity(), TABS_TITLE_LIST)
         tabAdapter.setSize(TABS_TITLE_LIST.size)
         return tabAdapter
     }
@@ -71,5 +71,12 @@ class HomeFragment : Fragment() {
         fun newInstance() = HomeFragment()
     }
 
-
+    private fun setupViews() {
+       // requireActivity().findViewById<View>(R.id.profilePicture).visibility = View.VISIBLE
+        val search_bar = requireActivity().findViewById<EditText>(R.id.search_bar)
+        requireActivity().findViewById<View>(R.id.headerLayout).visibility = View.VISIBLE
+        search_bar.clearFocus()
+        search_bar.setText("")
+        requireActivity().findViewById<View>(R.id.backBtn).visibility = View.GONE
+    }
 }
