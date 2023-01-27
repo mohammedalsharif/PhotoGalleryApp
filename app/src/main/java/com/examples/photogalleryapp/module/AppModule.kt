@@ -22,6 +22,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideApiInterface(): ApiInterface {
+        
      return   Retrofit.Builder().baseUrl(ApiInterface.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient()!!)
