@@ -37,9 +37,8 @@ class ImageListingFragment : Fragment() {
         binding = FragmentImageListingBinding.inflate(inflater)
         adapter = ImagesPageAdapter()
 
-
         arguments?.getString(Constans.KEY_NAME)?.let {
-            viewModel.search(it)
+            viewModel.search(category = it)
         }
 
         binding.apply {
@@ -59,6 +58,7 @@ class ImageListingFragment : Fragment() {
 
         adapter.clickListener = object : OnClickListener {
             override fun onClickItem(id: Int) {
+
                 Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_imageDetailsFragment)
             }
 

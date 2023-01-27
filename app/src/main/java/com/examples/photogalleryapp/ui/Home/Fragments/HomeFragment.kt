@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
-    val TABS_TITLE_LIST = listOf(
+    private val TABS_TITLE_LIST = listOf(
         "Editor's Choice",
         "Backgrounds",
         "Fashion",
@@ -44,8 +44,6 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater)
-
-
         return binding.root
 
     }
@@ -54,8 +52,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewPager.adapter = createTabAdapter()
 
-        TabLayoutMediator(binding.tabs, binding.viewPager) { tab, poss ->
-            tab.text = TABS_TITLE_LIST[poss]
+        TabLayoutMediator(binding.tabs, binding.viewPager) { tab, poss -> tab.text = TABS_TITLE_LIST[poss]
         }.attach()
         activity?.findViewById<View>(R.id.headerLayout)?.visibility = View.VISIBLE
     }

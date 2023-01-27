@@ -23,8 +23,7 @@ import com.examples.photogalleryapp.data.model.Image
 import com.examples.photogalleryapp.databinding.RecImageItemBinding
 import com.examples.photogalleryapp.listener.OnClickListener
 
-class ImagesPageAdapter :
-    PagingDataAdapter<Image, ImagesPageAdapter.ImagesViewHolder>(IMAGES_COMPARATOR) {
+class ImagesPageAdapter : PagingDataAdapter<Image, ImagesPageAdapter.ImagesViewHolder>(IMAGES_COMPARATOR) {
 
     lateinit var clickListener: OnClickListener
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
@@ -36,12 +35,11 @@ class ImagesPageAdapter :
             .diskCacheStrategy(DiskCacheStrategy.ALL)
 
         holder.bindingInt.root.setOnClickListener {
-            clickListener.onClickItem(position)
+            clickListener.onClickItem(image?.id ?: 0)
         }
         Glide.with(holder.itemView).load(image?.webformatURL)
             .apply(requestOptions)
-            .addListener(object :
-                RequestListener<Drawable> {
+            .addListener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
                     model: Any?,
@@ -69,8 +67,7 @@ class ImagesPageAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder {
-        val binding =
-            RecImageItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = RecImageItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ImagesViewHolder(binding)
     }
 

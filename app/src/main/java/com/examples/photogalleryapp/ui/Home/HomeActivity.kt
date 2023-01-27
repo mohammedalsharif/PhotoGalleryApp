@@ -20,8 +20,8 @@ import retrofit2.Response
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
-    lateinit var binding: ActivityMainBinding
-    lateinit var navController: NavController
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

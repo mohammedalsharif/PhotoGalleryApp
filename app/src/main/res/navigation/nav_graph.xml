@@ -29,5 +29,8 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             />
+        <argument
+            android:name="imageId"
+            app:argType="integer" />
     </fragment>
 </navigation>
