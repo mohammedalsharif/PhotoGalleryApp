@@ -34,9 +34,6 @@ class ImagesPageAdapter : PagingDataAdapter<Image, ImagesPageAdapter.ImagesViewH
             .error(Common.getRandomDrawableColor())
             .diskCacheStrategy(DiskCacheStrategy.ALL)
 
-        holder.bindingInt.root.setOnClickListener {
-            clickListener.onClickItem(image?.id ?: 0)
-        }
         Glide.with(holder.itemView).load(image?.webformatURL)
             .apply(requestOptions)
             .addListener(object : RequestListener<Drawable> {
@@ -62,8 +59,13 @@ class ImagesPageAdapter : PagingDataAdapter<Image, ImagesPageAdapter.ImagesViewH
                 }
 
             })
-            .transition(DrawableTransitionOptions.withCrossFade())
+            .transition(DrawableTransitionOptions.withCrossFade(700))
             .into(holder.bindingInt.imageViewImage)
+
+        holder.bindingInt.root.setOnClickListener {
+            clickListener.onClickItem(image?.id ?: 0)
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder {

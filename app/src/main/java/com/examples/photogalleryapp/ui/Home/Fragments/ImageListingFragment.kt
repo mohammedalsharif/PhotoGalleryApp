@@ -59,7 +59,7 @@ class ImageListingFragment : Fragment() {
         adapter.clickListener = object : OnClickListener {
             override fun onClickItem(id: Int) {
 
-                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_imageDetailsFragment)
+                Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToImageDetailsFragment(id))
             }
 
         }
