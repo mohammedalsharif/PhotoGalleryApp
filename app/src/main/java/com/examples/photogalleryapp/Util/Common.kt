@@ -8,7 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import java.util.Random
 
 object Common {
-    val vibrantLightColorList = mutableListOf(
+    private val vibrantLightColorList = mutableListOf(
         ColorDrawable(android.graphics.Color.parseColor("#ffeead")),
         ColorDrawable(android.graphics.Color.parseColor("#93cfb3")),
         ColorDrawable(android.graphics.Color.parseColor("#fd7a7a")),

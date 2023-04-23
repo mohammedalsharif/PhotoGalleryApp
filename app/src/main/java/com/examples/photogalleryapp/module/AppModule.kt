@@ -1,8 +1,10 @@
 package com.examples.photogalleryapp.module
 
 import android.content.Context
+import com.examples.photogalleryapp.BuildConfig
 import com.examples.photogalleryapp.data.api.ApiClient
 import com.examples.photogalleryapp.data.api.ApiInterface
+import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,14 +25,14 @@ object AppModule {
     @Singleton
     fun provideApiInterface(): ApiInterface {
         
-     return   Retrofit.Builder().baseUrl(ApiInterface.BASE_URL)
+     return Retrofit.Builder().baseUrl(ApiInterface.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient()!!)
+            .client(okHttpClient())
             .build().create(ApiInterface::class.java)
     }
 
 
-    private fun okHttpClient(): OkHttpClient? {
+    private fun okHttpClient(): OkHttpClient {
         val logging = HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.HEADERS)
             .setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -40,6 +42,7 @@ object AppModule {
             .writeTimeout(ApiClient.TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(ApiClient.TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(logging)
+            .addInterceptor(OkHttpProfilerInterceptor())
             .build()
     }
 }

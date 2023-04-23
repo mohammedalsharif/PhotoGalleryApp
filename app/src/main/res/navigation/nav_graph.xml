@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/imageDetailsFragment"
-        android:name="com.examples.photogalleryapp.ui.Home.Fragments.ImageDetailsFragment"
+        android:name="com.examples.photogalleryapp.ui.imageDetails.ImageDetailsFragment"
         android:label="ImageDetailsFragment" >
         <action
             android:id="@+id/action_imageDetailsFragment_to_homeFragment"

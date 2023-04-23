@@ -1,13 +1,11 @@
-package com.examples.photogalleryapp.ui.Home.Fragments
+package com.examples.photogalleryapp.ui.imageDetails
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.examples.photogalleryapp.R
 import com.examples.photogalleryapp.databinding.FragmentImageDetailsBinding
 

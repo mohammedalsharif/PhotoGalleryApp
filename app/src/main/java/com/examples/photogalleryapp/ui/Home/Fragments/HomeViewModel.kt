@@ -1,4 +1,4 @@
-package com.examples.photogalleryapp.viewmodel
+package com.examples.photogalleryapp.ui.Home.Fragments
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

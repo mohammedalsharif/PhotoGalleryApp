@@ -38,9 +38,6 @@ class HomeFragment : Fragment() {
         "Music"
     )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater)
@@ -54,7 +51,7 @@ class HomeFragment : Fragment() {
 
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, poss -> tab.text = TABS_TITLE_LIST[poss]
         }.attach()
-        activity?.findViewById<View>(R.id.headerLayout)?.visibility = View.VISIBLE
+//        activity?.findViewById<View>(R.id.headerLayout)?.visibility = View.VISIBLE
     }
 
     private fun createTabAdapter(): TabAdapter {
@@ -63,17 +60,13 @@ class HomeFragment : Fragment() {
         return tabAdapter
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = HomeFragment()
-    }
 
-    private fun setupViews() {
-       // requireActivity().findViewById<View>(R.id.profilePicture).visibility = View.VISIBLE
-        val search_bar = requireActivity().findViewById<EditText>(R.id.search_bar)
-        requireActivity().findViewById<View>(R.id.headerLayout).visibility = View.VISIBLE
-        search_bar.clearFocus()
-        search_bar.setText("")
-        requireActivity().findViewById<View>(R.id.backBtn).visibility = View.GONE
-    }
+//    private fun setupViews() {
+//       // requireActivity().findViewById<View>(R.id.profilePicture).visibility = View.VISIBLE
+//        val search_bar = requireActivity().findViewById<EditText>(R.id.search_bar)
+//        requireActivity().findViewById<View>(R.id.headerLayout).visibility = View.VISIBLE
+//        search_bar.clearFocus()
+//        search_bar.setText("")
+//        requireActivity().findViewById<View>(R.id.backBtn).visibility = View.GONE
+//    }
 }

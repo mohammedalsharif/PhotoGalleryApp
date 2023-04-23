@@ -16,6 +16,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_rawRes="@raw/ic_animation_heart"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_url="REPLACE_JSON_URL" />
+        app:lottie_loop="false" />
 </androidx.constraintlayout.widget.ConstraintLayout>

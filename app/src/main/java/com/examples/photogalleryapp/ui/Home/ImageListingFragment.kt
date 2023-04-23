@@ -1,26 +1,19 @@
-package com.examples.photogalleryapp.ui.Home.Fragments
+package com.examples.photogalleryapp.ui.Home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import com.examples.photogalleryapp.R
 import com.examples.photogalleryapp.Util.Constans
 import com.examples.photogalleryapp.adapter.ImagesPageAdapter
-import com.examples.photogalleryapp.data.api.ApiClient
 import com.examples.photogalleryapp.databinding.FragmentImageListingBinding
 import com.examples.photogalleryapp.listener.OnClickListener
-import com.examples.photogalleryapp.repository.HomRepository
-import com.examples.photogalleryapp.viewmodel.HomeViewModel
+import com.examples.photogalleryapp.ui.Home.Fragments.HomeFragmentDirections
+import com.examples.photogalleryapp.ui.Home.Fragments.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,8 +51,8 @@ class ImageListingFragment : Fragment() {
 
         adapter.clickListener = object : OnClickListener {
             override fun onClickItem(id: Int) {
-
-                Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToImageDetailsFragment(id))
+                val navDirections = HomeFragmentDirections.actionHomeFragmentToImageDetailsFragment(id)
+                Navigation.findNavController(view).navigate(navDirections)
             }
 
         }

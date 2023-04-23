@@ -1,11 +1,9 @@
 package com.examples.photogalleryapp.adapter
 
-import androidx.compose.ui.text.toLowerCase
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.examples.photogalleryapp.ui.Home.Fragments.ImageListingFragment
-import java.util.*
+import com.examples.photogalleryapp.ui.Home.ImageListingFragment
 
 class TabAdapter(fragmentActivity: FragmentActivity, category: List<String>) :
     FragmentStateAdapter(fragmentActivity) {
